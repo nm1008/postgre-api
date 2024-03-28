@@ -4,8 +4,17 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
+const options = [
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+];
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(options));
 
 app.get("/", (req, res) => {
   res.json({ info: "Node.js, Express, and Postgres API" });
